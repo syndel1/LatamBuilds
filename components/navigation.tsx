@@ -55,7 +55,7 @@ export function Navigation() {
             <span className="lang-sep">·</span>
             <button className={`lang-btn ${lang === "es" ? "active" : ""}`} onClick={() => setLang("es")}>ES</button>
           </div>
-          <a href="https://luma.com/user/usr-XolQmqcXCJ395iN" target="_blank" rel="noopener noreferrer" className="nav-cta">
+          <a href="https://luma.com/calendar/cal-tMx4CyALnWeYMzv" target="_blank" rel="noopener noreferrer" className="nav-cta">
             {tr.nav.register}
           </a>
           <button className="nav-hamburger" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">
@@ -78,7 +78,7 @@ export function Navigation() {
               <span className="lang-sep">·</span>
               <button className={`lang-btn ${lang === "es" ? "active" : ""}`} onClick={() => setLang("es")}>ES</button>
             </div>
-            <a href="https://luma.com/user/usr-XolQmqcXCJ395iN" target="_blank" rel="noopener noreferrer" className="nav-cta" onClick={() => setMenuOpen(false)}>
+            <a href="https://luma.com/calendar/cal-tMx4CyALnWeYMzv" target="_blank" rel="noopener noreferrer" className="nav-cta" onClick={() => setMenuOpen(false)}>
               {tr.nav.register}
             </a>
           </div>

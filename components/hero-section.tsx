@@ -92,6 +92,9 @@ export function HeroSection() {
           <a href="https://luma.com/yj5r0k24" target="_blank" rel="noopener noreferrer" className="btn-city-outline">
             {tr.hero.btn2}
           </a>
+          <a href="https://tally.so/r/Y5dX9q" target="_blank" rel="noopener noreferrer" className="btn-city-outline">
+            Submit a Challenge →
+          </a>
         </div>
         <div className="countdown-row">
           {countdownValues.map((value, i) => (

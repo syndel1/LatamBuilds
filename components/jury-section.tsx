@@ -7,7 +7,7 @@ const judges = [
   {
     name: "Andrés Noero",
     bio: "CEO @ Tangering AI",
-    image: "https://media.licdn.com/dms/image/v2/D4D03AQHuQPShx2yM5g/profile-displayphoto-scale_400_400/B4DZji9IAwH4Ak-/0/1756154337816?e=1777507200&v=beta&t=ZSghnyFydZy8Tq1i_hgoqaTTMKrQnNCsqAx0e7B-Guw",
+    image: "https://media.licdn.com/dms/image/v2/D4E03AQEJbjNHrxfzzA/profile-displayphoto-scale_400_400/B4EZ1_ouZXHQAg-/0/1775962880556?e=1778112000&v=beta&t=Gmc0pOxgdAl6wYFRAtAOgjkldSyV6PCTN3sOOx85FU4",
     link: "https://www.linkedin.com/in/andresnoero/",
   },
   {
