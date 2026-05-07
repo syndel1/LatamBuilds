@@ -14,22 +14,36 @@ export function CTASection() {
 
   return (
     <section className="cta-section" id="register">
-      <div className="cta-orb1" />
-      <div className="cta-orb2" />
-      <div className="cta-content">
-        <div className="section-tag reveal" ref={revealRef} style={{ justifyContent: "center" }}>
-          {tr.cta.tag}
-        </div>
-        <div className="cta-title reveal" ref={revealRef}>
+      <div className="cta-frame">
+        <div className="cta-corner cta-corner-tl" aria-hidden="true">+</div>
+        <div className="cta-corner cta-corner-tr" aria-hidden="true">+</div>
+        <div className="cta-corner cta-corner-bl" aria-hidden="true">+</div>
+        <div className="cta-corner cta-corner-br" aria-hidden="true">+</div>
+
+        <span className="editorial-index cta-index reveal" ref={revealRef}>
+          <span className="editorial-index-num">07</span>
+          <span className="editorial-index-sep">/</span>
+          <span className="editorial-index-name">{tr.cta.tag}</span>
+        </span>
+
+        <h2 className="cta-headline reveal" ref={revealRef}>
           {tr.cta.title1}
           <br />
-          <span>{tr.cta.title2}</span>
-        </div>
-        <p className="cta-sub reveal" ref={revealRef}>{tr.cta.sub}</p>
-        <div className="hero-btns reveal" ref={revealRef}>
-          <a href="mailto:syndel@domu.ai" className="btn-primary">{tr.cta.btn1}</a>
-          <a onClick={() => scrollToSection("sponsors")} className="btn-secondary" style={{ cursor: "pointer" }}>
-            {tr.cta.btn2}
+          <em>{tr.cta.title2}</em>
+        </h2>
+
+        <p className="cta-lede reveal" ref={revealRef}>{tr.cta.sub}</p>
+
+        <div className="cta-actions reveal" ref={revealRef}>
+          <a href="mailto:syndel@domu.ai" className="editorial-btn editorial-btn-lg">
+            <span className="editorial-btn-label">{tr.cta.btn1}</span>
+          </a>
+          <a
+            onClick={() => scrollToSection("sponsors")}
+            className="editorial-btn editorial-btn-ghost editorial-btn-lg"
+            style={{ cursor: "pointer" }}
+          >
+            <span className="editorial-btn-label">{tr.cta.btn2}</span>
           </a>
         </div>
       </div>

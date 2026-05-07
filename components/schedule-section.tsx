@@ -3,35 +3,44 @@
 import { useReveal } from "@/hooks/use-reveal"
 import { useLanguage } from "@/context/language-context"
 
-const cities = ["bog", "bog", "mex", "mex"]
+const cities: Array<"bog" | "mex"> = ["bog", "bog", "mex", "mex"]
+const cityCodes = { bog: "BOG", mex: "MEX" } as const
 
 export function ScheduleSection() {
   const revealRef = useReveal()
   const { tr } = useLanguage()
 
   return (
-    <section id="schedule">
-      <div className="section-inner">
-        <div className="section-tag reveal" ref={revealRef}>{tr.schedule.tag}</div>
-        <div className="section-title reveal" ref={revealRef}>
+    <section id="schedule" className="editorial-section">
+      <div className="editorial-header">
+        <span className="editorial-index">
+          <span className="editorial-index-num">01</span>
+          <span className="editorial-index-sep">/</span>
+          <span className="editorial-index-name">{tr.schedule.tag}</span>
+        </span>
+        <h2 className="editorial-title reveal" ref={revealRef}>
           {tr.schedule.title1}
           <br />
-          {tr.schedule.title2}
-        </div>
-        <p className="section-sub reveal" ref={revealRef}>{tr.schedule.sub}</p>
-        <div className="schedule-list reveal" ref={revealRef}>
-          {tr.schedule.items.map((item, idx) => (
-            <div key={idx} className="schedule-item">
-              <div className={`sch-dot ${cities[idx]}`} />
-              <div className="sch-date">{item.date}</div>
-              <div>
-                <div className="sch-title">{item.title}</div>
+          <em>{tr.schedule.title2}</em>
+        </h2>
+        <p className="editorial-sub reveal" ref={revealRef}>{tr.schedule.sub}</p>
+      </div>
+
+      <div className="schedule-table reveal" ref={revealRef}>
+        {tr.schedule.items.map((item, idx) => {
+          const code = cities[idx]
+          return (
+            <div key={idx} className="schedule-row" data-city={code}>
+              <span className={`sch-marker sch-marker-${code}`} aria-hidden="true" />
+              <span className="sch-date">{item.date}</span>
+              <div className="sch-body">
+                <div className="sch-headline">{item.title}</div>
                 <div className="sch-sub">{item.sub}</div>
               </div>
-              <div className={`sch-city ${cities[idx]}`}>{item.city}</div>
+              <span className="sch-cityb">{cityCodes[code]}</span>
             </div>
-          ))}
-        </div>
+          )
+        })}
       </div>
     </section>
   )

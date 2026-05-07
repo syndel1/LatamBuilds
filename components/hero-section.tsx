@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
+import { useEffect, useState } from "react"
 import { useLanguage } from "@/context/language-context"
 
 const TARGET = new Date("2026-05-09T09:00:00-05:00")
@@ -26,75 +26,52 @@ function useCountdown() {
 }
 
 export function HeroSection() {
-  const statsRef = useRef<HTMLDivElement>(null)
   const countdown = useCountdown()
   const { tr } = useLanguage()
 
-  useEffect(() => {
-    const counters = statsRef.current?.querySelectorAll(".stat-n")
-    if (!counters) return
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          const target = entry.target as HTMLElement
-          if (entry.isIntersecting && !target.dataset.done) {
-            target.dataset.done = "1"
-            const raw = target.textContent || ""
-            const n = parseInt(raw.replace(/\D/g, ""))
-            if (isNaN(n)) return
-            let v = 0
-            const dur = 1200
-            const step = 16
-            const inc = n / (dur / step)
-            const interval = setInterval(() => {
-              v += inc
-              if (v >= n) { v = n; clearInterval(interval) }
-              target.textContent = raw.includes("+") ? Math.floor(v) + "+" : String(Math.floor(v))
-            }, step)
-          }
-        })
-      },
-      { threshold: 0.5 }
-    )
-    counters.forEach((c) => observer.observe(c))
-    return () => observer.disconnect()
-  }, [])
-
   const countdownLabels = ["DAYS", "HRS", "MIN", "SEC"]
   const countdownValues = [countdown.days, countdown.hours, countdown.minutes, countdown.seconds]
+  const cities = [
+    {
+      label: tr.hero.btn1,
+      flag: "/figma/flag-co.png",
+      href: "https://luma.com/mfxcoval",
+    },
+    {
+      label: tr.hero.btn2,
+      flag: "/figma/flag-mx.png",
+      href: "https://luma.com/yj5r0k24",
+    },
+  ]
 
   return (
     <section className="hero" id="home">
-      <div className="orb orb1" />
-      <div className="orb orb2" />
-      <div className="orb orb3" />
-      <div className="hero-grid" />
+      <div className="hero-side hero-side-left">real challenges, real results_</div>
+      <div className="hero-side hero-side-right">real challenges, real results_</div>
+      <div className="hero-cross hero-cross-one">+</div>
+      <div className="hero-cross hero-cross-two">+</div>
+      <div className="hero-cross hero-cross-three">+</div>
       <div className="hero-content">
-        <div className="hero-badge" style={{ marginTop: "48px" }}>
-          <div className="pulse-dot" />
-          {tr.hero.badge}
-        </div>
+        <p className="hero-badge">{tr.hero.badge}</p>
+        <span className="hero-axis hero-axis-top" aria-hidden="true" />
         <div className="hero-title">
-          <div style={{ lineHeight: 1.0, margin: 0 }}>
-            <span className="hero-line1" style={{ margin: 0 }}>The GTM</span>
-            <span className="hero-line2" style={{ margin: 0 }}>Hackathon.</span>
-          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/figma/the-gtm-hackathon.svg" alt="The GTM Hackathon" className="hero-title-img" />
         </div>
         <p className="hero-sub">
           {tr.hero.subtitle}
           <strong>{tr.hero.subtitleBold}</strong>
           {tr.hero.subtitleEnd}
         </p>
-        <div className="hero-btns">
-          <a href="https://luma.com/mfxcoval" target="_blank" rel="noopener noreferrer" className="btn-city-gradient">
-            {tr.hero.btn1}
-          </a>
-          <a href="https://luma.com/yj5r0k24" target="_blank" rel="noopener noreferrer" className="btn-city-outline">
-            {tr.hero.btn2}
-          </a>
-          <a href="https://tally.so/r/Y5dX9q" target="_blank" rel="noopener noreferrer" className="btn-city-outline">
-            Submit a Challenge →
-          </a>
+        <div className="hero-cities" aria-label="Hackathon cities">
+          {cities.map((city) => (
+            <a key={city.label} href={city.href} target="_blank" rel="noopener noreferrer" className="city-link">
+              <span aria-hidden="true">--</span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={city.flag} alt="" />
+              {city.label}
+            </a>
+          ))}
         </div>
         <div className="countdown-row">
           {countdownValues.map((value, i) => (
@@ -104,29 +81,7 @@ export function HeroSection() {
             </div>
           ))}
         </div>
-        <div className="supported-by">
-          <span className="supported-by-label">{tr.hero.supportedBy}</span>
-          <div className="supported-by-logos">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="https://i.imgur.com/Xu3sYXE.png" alt="LatamBuilds" style={{ height: 75, objectFit: "contain", mixBlendMode: "multiply" }} />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="https://i.imgur.com/SgpREvt.png" alt="30X" style={{ height: 62, objectFit: "contain", mixBlendMode: "multiply" }} />
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="https://i.imgur.com/LcH00ZC.png" alt="Makers" style={{ height: 80, objectFit: "contain", mixBlendMode: "multiply" }} />
-          </div>
-        </div>
-        <div
-          ref={statsRef}
-          className="stats-inner"
-          style={{ marginTop: "0.75rem", maxWidth: "680px", marginLeft: "auto", marginRight: "auto" }}
-        >
-          {tr.hero.stats.map((stat, idx) => (
-            <div key={idx} className="stat-item">
-              <div className="stat-n">{stat.value}</div>
-              <div className="stat-l">{stat.label}</div>
-            </div>
-          ))}
-        </div>
+        <span className="hero-axis hero-axis-bottom" aria-hidden="true" />
       </div>
     </section>
   )

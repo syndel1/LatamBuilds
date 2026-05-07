@@ -7,38 +7,34 @@ export function EcosystemSection() {
   const revealRef = useReveal()
   const { tr } = useLanguage()
 
-  const topCards = tr.ecosystem.cards.slice(0, 2)
-  const bottomCards = tr.ecosystem.cards.slice(2, 4)
-
   return (
-    <section id="ecosystem">
-      <div className="section-inner">
-        <div className="section-tag reveal" ref={revealRef}>{tr.ecosystem.tag}</div>
-        <div className="section-title reveal" ref={revealRef}>
+    <section id="ecosystem" className="editorial-section">
+      <div className="editorial-header">
+        <span className="editorial-index">
+          <span className="editorial-index-num">04</span>
+          <span className="editorial-index-sep">/</span>
+          <span className="editorial-index-name">{tr.ecosystem.tag}</span>
+        </span>
+        <h2 className="editorial-title reveal" ref={revealRef}>
           {tr.ecosystem.title1}
-          <br />{tr.ecosystem.title2}
-        </div>
-        <p className="section-sub reveal" ref={revealRef}>{tr.ecosystem.sub}</p>
-        <div className="eco-wrap reveal" ref={revealRef}>
-          <div className="eco-grid">
-            {topCards.map((card, idx) => (
-              <div key={idx} className="eco-card hi">
-                <div className="eco-tag">{card.tag}</div>
-                <div className="eco-title">{card.title}</div>
-                <div className="eco-desc">{card.desc}</div>
-              </div>
-            ))}
-          </div>
-          <div className="eco-grid" style={{ borderTop: "1px solid var(--border)" }}>
-            {bottomCards.map((card, idx) => (
-              <div key={idx} className="eco-card">
-                <div className="eco-tag">{card.tag}</div>
-                <div className="eco-title">{card.title}</div>
-                <div className="eco-desc">{card.desc}</div>
-              </div>
-            ))}
-          </div>
-        </div>
+          <br />
+          <em>{tr.ecosystem.title2}</em>
+        </h2>
+        <p className="editorial-sub reveal" ref={revealRef}>{tr.ecosystem.sub}</p>
+      </div>
+
+      <div className="eco-rack reveal" ref={revealRef}>
+        {tr.ecosystem.cards.map((card, idx) => (
+          <article key={idx} className="eco-tile">
+            <div className="eco-tile-head">
+              <span className="eco-tile-num">{`0${idx + 1}`.slice(-2)}</span>
+              <span className="eco-tile-cross" aria-hidden="true">+</span>
+            </div>
+            <div className="eco-tile-tag">{card.tag}</div>
+            <h3 className="eco-tile-title">{card.title}</h3>
+            <p className="eco-tile-desc">{card.desc}</p>
+          </article>
+        ))}
       </div>
     </section>
   )
