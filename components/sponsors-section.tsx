@@ -25,32 +25,43 @@ export function SponsorsSection() {
   }
 
   return (
-    <section id="sponsors">
-      <div className="section-inner">
-        <div className="section-tag reveal" ref={revealRef}>{tr.sponsors.tag}</div>
-        <div className="section-title reveal" ref={revealRef}>
+    <section id="sponsors" className="editorial-section">
+      <div className="editorial-header">
+        <span className="editorial-index">
+          <span className="editorial-index-num">05</span>
+          <span className="editorial-index-sep">/</span>
+          <span className="editorial-index-name">{tr.sponsors.tag}</span>
+        </span>
+        <h2 className="editorial-title reveal" ref={revealRef}>
           {tr.sponsors.title1}
           <br />
-          {tr.sponsors.title2}
-        </div>
-        <p className="section-sub reveal" ref={revealRef}>
+          <em>{tr.sponsors.title2}</em>
+        </h2>
+        <p className="editorial-sub reveal" ref={revealRef}>
           {tr.sponsors.sub}
           <strong>{tr.sponsors.subBold}</strong>
         </p>
-        <div className="sponsors-grid reveal" ref={revealRef}>
-          {sponsors.map((sponsor, idx) => (
-            <div key={idx} className={`sponsor-cell ${sponsor.isYou ? "you" : ""}`}>
-              <span className="sponsor-name" style={sponsor.isYou ? { opacity: 0.4 } : undefined}>
-                {sponsor.name}
-              </span>
-            </div>
-          ))}
-        </div>
-        <div style={{ textAlign: "center" }}>
-          <a onClick={() => scrollToSection("register")} className="btn-primary" style={{ cursor: "pointer" }}>
-            {tr.sponsors.btn}
-          </a>
-        </div>
+      </div>
+
+      <div className="sponsor-rack reveal" ref={revealRef}>
+        {sponsors.map((sponsor, idx) => (
+          <div
+            key={idx}
+            className={`sponsor-tile${sponsor.isYou ? " sponsor-tile-you" : ""}`}
+            onClick={sponsor.isYou ? () => scrollToSection("register") : undefined}
+            role={sponsor.isYou ? "button" : undefined}
+            tabIndex={sponsor.isYou ? 0 : undefined}
+          >
+            <span className="sponsor-tile-num">{`0${idx + 1}`.slice(-2)}</span>
+            <span className="sponsor-tile-name">{sponsor.name}</span>
+          </div>
+        ))}
+      </div>
+
+      <div className="sponsor-cta-row">
+        <a onClick={() => scrollToSection("register")} className="editorial-btn">
+          <span className="editorial-btn-label">{tr.sponsors.btn}</span>
+        </a>
       </div>
     </section>
   )
