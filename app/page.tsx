@@ -1,5 +1,6 @@
 import { Navigation } from "@/components/navigation"
 import { HeroSection } from "@/components/hero-section"
+import { IntroSection } from "@/components/intro-section"
 import { ScheduleSection } from "@/components/schedule-section"
 import { PrizesSection } from "@/components/prizes-section"
 import { JurySection } from "@/components/jury-section"
@@ -15,6 +16,7 @@ export default function Home() {
     <LanguageProvider>
       <Navigation />
       <HeroSection />
+      <IntroSection />
       <hr className="rule" />
       <ScheduleSection />
       <hr className="rule" />
