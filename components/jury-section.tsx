@@ -64,6 +64,18 @@ const judges = [
     image: "/jury/john-rodriguez.jpeg",
     link: "https://www.linkedin.com/in/john-rodriguez-dev/",
   },
+  {
+    name: "Alejandra Morales",
+    bio: "Founder @ Moraleja Studio",
+    image: "/jury/alejandra-morales.jpeg",
+    link: "https://www.linkedin.com/in/alejamorales/",
+  },
+  {
+    name: "David Espejo",
+    bio: "Marketing @ Rappi",
+    image: "/jury/david-espejo.jpeg",
+    link: "https://www.linkedin.com/in/david-alejandro-espejo-garcia-298808216/",
+  },
 ]
 
 function PersonIcon() {
@@ -95,7 +107,7 @@ export function JurySection() {
         <p className="editorial-sub reveal" ref={revealRef}>{tr.jury.sub}</p>
       </div>
 
-      <div className="portrait-grid reveal" ref={revealRef}>
+      <div className="portrait-grid portrait-grid-4 reveal" ref={revealRef}>
         {judges.map((judge, idx) => (
           <a
             key={idx}
